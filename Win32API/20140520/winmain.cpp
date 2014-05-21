@@ -43,7 +43,9 @@ INT WINAPI _tWinMain(HINSTANCE hInstance,
 	int y = (cy - height)/2;
 
 	DWORD dwStyle = WS_OVERLAPPEDWINDOW;
-	dwStyle = dwStyle & ~WS_MAXIMIZEBOX;
+	//dwStyle = dwStyle & ~WS_MAXIMIZEBOX;
+	//dwStyle = dwStyle & ~WS_MINIMIZEBOX;
+	dwStyle &= ~WS_SYSMENU;
 
 	HWND hWnd = ::CreateWindowEx(0, szClassName, _T("Win32 Sample"),
 		dwStyle, 
