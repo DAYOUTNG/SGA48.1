@@ -1,7 +1,4 @@
-﻿#include <windows.h>
-#include <tchar.h>
-
-LRESULT CALLBACK WndProc(HWND,UINT,WPARAM,LPARAM);
+﻿#include "windefine.h"
 
 INT WINAPI _tWinMain(HINSTANCE hInstance,
 					 HINSTANCE hPrevInstance,
@@ -33,8 +30,8 @@ INT WINAPI _tWinMain(HINSTANCE hInstance,
 		return 1;
 	}
 
-	int width = 200;
-	int height = 300;
+	int width = 400;
+	int height = 400;
 
 	int cx = ::GetSystemMetrics(SM_CXSCREEN);
 	int cy = ::GetSystemMetrics(SM_CYSCREEN);
@@ -43,9 +40,8 @@ INT WINAPI _tWinMain(HINSTANCE hInstance,
 	int y = (cy - height)/2;
 
 	DWORD dwStyle = WS_OVERLAPPEDWINDOW;
-	//dwStyle = dwStyle & ~WS_MAXIMIZEBOX;
+	dwStyle = dwStyle & ~WS_MAXIMIZEBOX;
 	//dwStyle = dwStyle & ~WS_MINIMIZEBOX;
-	dwStyle &= ~WS_SYSMENU;
 
 	HWND hWnd = ::CreateWindowEx(0, szClassName, _T("Win32 Sample"),
 		dwStyle, 
@@ -78,13 +74,3 @@ INT WINAPI _tWinMain(HINSTANCE hInstance,
 	return msg.wParam;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
-{
-	if (uMsg == WM_DESTROY)
-	{
-		::PostQuitMessage(0);
-		return 0;
-	}
-
-	return ::DefWindowProc(hWnd,uMsg,wParam,lParam);
-}
