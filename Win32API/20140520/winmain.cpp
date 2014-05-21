@@ -33,12 +33,22 @@ INT WINAPI _tWinMain(HINSTANCE hInstance,
 		return 1;
 	}
 
+	int width = 200;
+	int height = 300;
+
 	int cx = ::GetSystemMetrics(SM_CXSCREEN);
+	int cy = ::GetSystemMetrics(SM_CYSCREEN);
+
+	int x = (cx - width)/2;
+	int y = (cy - height)/2;
+
+	DWORD dwStyle = WS_OVERLAPPEDWINDOW;
+	dwStyle = dwStyle & ~WS_MAXIMIZEBOX;
 
 	HWND hWnd = ::CreateWindowEx(0, szClassName, _T("Win32 Sample"),
-		WS_OVERLAPPEDWINDOW, 
-		0, 0,
-		500, 500,
+		dwStyle, 
+		x, y,
+		width, height,
 		NULL, NULL, hInstance, NULL);
 
 	if (hWnd == NULL)
